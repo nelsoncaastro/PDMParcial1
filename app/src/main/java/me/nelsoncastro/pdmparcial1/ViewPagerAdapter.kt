@@ -7,18 +7,13 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 
 class ViewPagerAdapter(private val Contexte: Context, fm: FragmentManager, private val bungalo: Bundle) : FragmentPagerAdapter(fm) {
-    private val serie: Contacts
-    private val favSerie: ContactsFavoris
-
-    init {
-        //this.serie = RecyclerViewFragment1.newInstance(bungalo.getParcelableArrayList<Serie>("KEY"))
-        //this.favSerie = RecyclerViewFragment2.newInstance(bungalo.getParcelableArrayList<Serie>("KEY"))
-    }
+    private val contacts: Contacts = Contacts
+    private val contactsFavoris: ContactsFavoris = ContactsFavoris
 
     override fun getItem(position: Int): Fragment = when (position) {
-        0 -> serie
-        1 -> favSerie
-        else -> serie
+        0 -> contacts
+        1 -> contactsFavoris
+        else -> contacts
     }
 
     override fun getCount(): Int {
