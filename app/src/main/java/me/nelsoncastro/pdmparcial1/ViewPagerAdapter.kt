@@ -7,8 +7,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 
 class ViewPagerAdapter(private val Contexte: Context, fm: FragmentManager, private val bungalo: Bundle) : FragmentPagerAdapter(fm) {
-    private val contacts: Contacts = Contacts
-    private val contactsFavoris: ContactsFavoris = ContactsFavoris
+    private val contacts: Contacts = Contacts.newInstance(bungalo.getParcelableArrayList("KEY"))
+    private val contactsFavoris: ContactsFavoris = ContactsFavoris.newInstance(bungalo.getParcelableArrayList("KEY"))
 
     override fun getItem(position: Int): Fragment = when (position) {
         0 -> contacts

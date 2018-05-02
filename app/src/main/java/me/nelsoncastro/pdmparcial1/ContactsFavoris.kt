@@ -3,10 +3,12 @@ package me.nelsoncastro.pdmparcial1
 import android.annotation.SuppressLint
 import android.support.v4.app.Fragment
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.recyclerview2_main.*
 
 @SuppressLint("ValidFragment", "StaticFieldLeak")
 object ContactsFavoris: Fragment() {
@@ -29,6 +31,14 @@ object ContactsFavoris: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        favcontacts = prepareFavSeries(contacts)
+
+        rv = getView()!!.findViewById(R.id.recycly2)
+        val lManager = GridLayoutManager(this.context, 3)
+        rv!!.layoutManager = lManager
+        adapter = ContactsAdapter(favcontacts!!,this.context!!,true)
+        rv!!.adapter = adapter
+
 
     }
 
@@ -42,7 +52,8 @@ object ContactsFavoris: Fragment() {
 
     fun update(contactsss: ArrayList<Contact>){
         favcontacts = prepareFavSeries(contactsss)
-
+        adapter = ContactsAdapter(favcontacts!!,this.context!!,true)
+        rv!!.adapter = adapter
     }
 
     fun  newInstance(contactss: ArrayList<Contact>)=
