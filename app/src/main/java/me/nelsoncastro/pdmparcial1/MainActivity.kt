@@ -9,6 +9,7 @@ import android.provider.ContactsContract
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import java.io.File
+import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +18,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        contacts = ArrayList<Contact>().apply {
+        add(Contact("Nelson",77400000,R.drawable.earth,null,0,false))
+        add(Contact("Sam",74190000,R.drawable.twd,null,0,false))
+        add(Contact("Phil",71300000,R.drawable.got,null,0,false))}
+
 
         val bungalo = Bundle()
         bungalo.putParcelableArrayList("KEY", contacts)
@@ -47,16 +54,23 @@ class MainActivity : AppCompatActivity() {
                             val file: String = baseContext.cacheDir.path + "/temp_" + id
                             val FileTemp = File(file)
                             try {
-
-                            } catch (e: FileSystemException) {
+                                val fOutStream = FileOutputStream(FileTemp)
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOutStream)
+                                fOutStream.flush()
+                                fOutStream.close()
+                            } catch (e: ExceptionInInitializerError) {
                                 e.printStackTrace()
                             }
+                            val imageSrc = FileTemp.path
+                            contacts!!.add(Contact(name,numerotelephone.toInt(),imageSrc.toInt(),null,0,false))
                         }
                     }
+                    pcurry.close()
                 }
 
 
             }
         }
+        curry.close()
     }
 }

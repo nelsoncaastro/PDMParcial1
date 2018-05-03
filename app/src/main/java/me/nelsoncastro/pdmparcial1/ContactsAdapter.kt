@@ -58,7 +58,7 @@ class ContactsAdapter(private val contacts: ArrayList<Contact>, private val cont
     class ContactViewHolder(itemView: View, internal  var fav: Boolean) : RecyclerView.ViewHolder(itemView){
         internal var card : CardView = itemView.findViewById(R.id.card_view)
         internal var name : TextView = itemView.findViewById(R.id.name)
-        internal var img : ImageView = itemView.findViewById(R.id.image)
+        internal var img : ImageView = itemView.findViewById(R.id.img)
         internal var  butt : ImageView = itemView.findViewById(R.id.butt)
     }
 
