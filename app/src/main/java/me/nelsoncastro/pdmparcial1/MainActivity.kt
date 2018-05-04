@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.provider.ContactsContract
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
@@ -13,7 +14,7 @@ import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity() {
 
-    var contacts : ArrayList<Contact>? = null
+    var contacts : ArrayList<Contact> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +23,10 @@ class MainActivity : AppCompatActivity() {
         contacts = ArrayList<Contact>().apply {
         add(Contact("Nelson",77400000,R.drawable.earth,null,0,false))
         add(Contact("Sam",74190000,R.drawable.twd,null,0,false))
-        add(Contact("Phil",71300000,R.drawable.got,null,0,false))}
+        add(Contact("Phil",71300000,R.drawable.got,null,0,false))
+        add(Contact("Adele",71300000,R.drawable.bbad,null,0,false))
+        add(Contact("Jessi",71300000,R.drawable.all,null,0,false))
+        add(Contact("Nami",71300000,R.drawable.favs,null,0,false))}
 
 
         val bungalo = Bundle()
@@ -62,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                                 e.printStackTrace()
                             }
                             val imageSrc = FileTemp.path
-                            contacts!!.add(Contact(name,numerotelephone.toInt(),imageSrc.toInt(),null,0,false))
+                            contacts.add(Contact(name,numerotelephone.toInt(),imageSrc.toInt(),null,0,false))
                         }
                     }
                     pcurry.close()

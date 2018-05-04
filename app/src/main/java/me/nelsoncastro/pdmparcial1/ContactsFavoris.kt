@@ -12,16 +12,17 @@ import kotlinx.android.synthetic.main.recyclerview2_main.*
 
 @SuppressLint("ValidFragment", "StaticFieldLeak")
 object ContactsFavoris: Fragment() {
-    private var contacts: ArrayList<Contact>? = null
-    private var favcontacts: ArrayList<Contact>? = null
-    private var rv: RecyclerView? = null
-    private var adapter: ContactsAdapter? = null
+    var contacts: ArrayList<Contact>? = null
+    var favcontacts: ArrayList<Contact>? = null
+    var rv: RecyclerView? = null
+    var adapter: ContactsAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             contacts = it.getParcelableArrayList("KEY2")
         }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

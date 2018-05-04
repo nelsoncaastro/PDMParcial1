@@ -11,9 +11,9 @@ import android.view.ViewGroup
 
 @SuppressLint("ValidFragment", "StaticFieldLeak")
 object Contacts : Fragment() {
-    private  var rv: RecyclerView? = null
-    private  var contacts: ArrayList<Contact>? = null
-    private  var adapter: ContactsAdapter? = null
+    var rv: RecyclerView? = null
+    var contacts: ArrayList<Contact>? = null
+    var adapter: ContactsAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
