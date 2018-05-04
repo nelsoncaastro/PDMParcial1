@@ -2,6 +2,7 @@ package me.nelsoncastro.pdmparcial1
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -21,6 +22,9 @@ class ContactsAdapter(private val contacts: ArrayList<Contact>, private val cont
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         holder.name.text = contacts[position].surnom
         holder.img.setImageResource(contacts[position].image)
+        holder.img.setOnClickListener { v ->
+            var intent = Intent(contexte,SecondActivity)
+        }
         holder.butt.setImageResource(if (contacts[position].isFavoris) R.drawable.star_full else R.drawable.star_empty)
         holder.butt.setOnClickListener {  v ->
             Toast.makeText(v.context, contacts[position].surnom, Toast.LENGTH_SHORT).show()
