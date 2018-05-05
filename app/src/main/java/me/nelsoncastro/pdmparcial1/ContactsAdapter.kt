@@ -31,7 +31,7 @@ class ContactsAdapter(private val contacts: ArrayList<Contact>, private val cont
             val i  = Intent(contexte, SecondActivity::class.java)
             i.putExtras(sendBundle)
             contexte.startActivity(i)
-            (contexte as Activity).finish()
+            //(contexte as Activity).finish()
         }
         holder.butt.setImageResource(if (contacts[position].isFavoris) R.drawable.star_full else R.drawable.star_empty)
         holder.butt.setOnClickListener {  v ->
