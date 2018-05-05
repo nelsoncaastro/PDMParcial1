@@ -1,6 +1,7 @@
 package me.nelsoncastro.pdmparcial1
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -21,12 +22,16 @@ class ContactsAdapter(private val contacts: ArrayList<Contact>, private val cont
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-        var sendBundle = Bundle()
-        sendBundle.putParcelable("KEEY",contacts[position])
+        val sendBundle = Bundle()
 
         holder.name.text = contacts[position].surnom
         holder.img.setImageResource(contacts[position].image)
         holder.img.setOnClickListener { v ->
+            sendBundle.putParcelable("KEEY",contacts[position])
+            val i  = Intent(contexte, SecondActivity::class.java)
+            i.putExtras(sendBundle)
+            contexte.startActivity(i)
+            (contexte as Activity).finish()
         }
         holder.butt.setImageResource(if (contacts[position].isFavoris) R.drawable.star_full else R.drawable.star_empty)
         holder.butt.setOnClickListener {  v ->

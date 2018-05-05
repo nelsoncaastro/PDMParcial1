@@ -1,10 +1,12 @@
 package me.nelsoncastro.pdmparcial1
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +45,13 @@ class Contacts : Fragment() {
         }
         adapter = ContactsAdapter(contacts!!,this.context!!,false)
         rv!!.adapter = adapter
+    }
+
+    fun calculateNoOfColumns(contexte: Context): Int{
+        val dislpayMetrics: DisplayMetrics = contexte.resources.displayMetrics
+        val dpWidth: Float = dislpayMetrics.widthPixels / dislpayMetrics.density
+        val noOfColumns: Int = (dpWidth/180).toInt()
+        return noOfColumns
     }
 
     companion object {

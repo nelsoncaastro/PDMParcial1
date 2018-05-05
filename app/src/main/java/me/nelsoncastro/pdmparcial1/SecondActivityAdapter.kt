@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-class SecondActivityAdapter(contact: Contact): RecyclerView.Adapter<SecondActivityAdapter.SingleViewHolder>() {
+class SecondActivityAdapter(private val contact: Contact): RecyclerView.Adapter<SecondActivityAdapter.SingleViewHolder>() {
 
-    var contactInfo : ArrayList<Contact>? = null
+    var contactInfo : ArrayList<String>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SingleViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_second_contact_single,parent,false)
@@ -18,18 +18,45 @@ class SecondActivityAdapter(contact: Contact): RecyclerView.Adapter<SecondActivi
     }
 
     override fun getItemCount(): Int {
-        return contactInfo!!.size
+        return 3
     }
 
     override fun onBindViewHolder(holder: SingleViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        contactInfo= crearArrayList(contact)
+
+        when(position){
+            0 -> {//holder.imgSrc.setImageResource(R.drawable.star_full)
+                holder.imgSrc.maxWidth = 50
+                holder.imgSrc.maxHeight = 50
+                holder.text1.text = contactInfo!![position]
+                holder.text2.text = "Surnom" }
+            1 -> {//holder.imgSrc.setImageResource(R.drawable.star_full)
+                holder.text1.text = contactInfo!![position]
+                holder.text2.text = "Numero Telephonique" }
+            2 -> {//holder.imgSrc.setImageResource(R.drawable.star_full)
+                holder.text1.text = contactInfo!![position]
+                holder.text2.text = "Carte" }
+
+
+        }
     }
 
+    fun crearArrayList(contact: Contact): ArrayList<String>{
+        var auxi = ArrayList<String>().apply {
+            add(contact.surnom)
+            add(contact.nombre.toString())
+            //add(contact.image.toString())
+            //add(contact.but!!)
+            add(contact.carte.toString())
+        }
+
+        return auxi
+    }
 
     class SingleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         internal var card : CardView = itemView.findViewById(R.id.card_view2)
-        internal var name : TextView = itemView.findViewById(R.id.name)
-        internal var img : ImageView = itemView.findViewById(R.id.img)
-        internal var  butt : ImageView = itemView.findViewById(R.id.butt)
+        internal var text1 : TextView = itemView.findViewById(R.id.texty1_single)
+        internal var  text2 : TextView = itemView.findViewById(R.id.texty2_single)
+        internal var imgSrc : ImageView = itemView.findViewById(R.id.imagy_single)
     }
 }

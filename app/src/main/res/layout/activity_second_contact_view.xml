@@ -35,9 +35,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_width="match_parent"
                 app:title="@string/tab1"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="pin"
-                >
+                app:titleTextColor="#FFF"
+                app:layout_collapseMode="parallax">
 
             </android.support.v7.widget.Toolbar>
 
@@ -56,7 +55,8 @@
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:id="@+id/recycly_contact_view"/>
         </FrameLayout>
     </android.support.v4.widget.NestedScrollView>
 
