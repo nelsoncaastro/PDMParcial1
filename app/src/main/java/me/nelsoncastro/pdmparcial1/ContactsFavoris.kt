@@ -10,8 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.recyclerview2_main.*
 
-@SuppressLint("ValidFragment", "StaticFieldLeak")
-object ContactsFavoris: Fragment() {
+class ContactsFavoris: Fragment() {
     var contacts: ArrayList<Contact>? = null
     var favcontacts: ArrayList<Contact>? = null
     var rv: RecyclerView? = null
@@ -57,10 +56,18 @@ object ContactsFavoris: Fragment() {
         rv!!.adapter = adapter
     }
 
-    fun  newInstance(contactss: ArrayList<Contact>)=
-            ContactsFavoris.apply {
-                arguments = Bundle().apply {
-                    putParcelableArrayList("KEY2",contactss)
-                }
-            }
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        @JvmStatic val fraggy = ContactsFavoris()
+        @JvmStatic val args = Bundle()
+
+        fun newInstance(contactsss: ArrayList<Contact>):ContactsFavoris{
+            args.putParcelableArrayList("KEY2",contactsss)
+            fraggy.arguments = args
+            return fraggy
+        }
+        fun getInstance(): ContactsFavoris{
+            return fraggy
+        }
+    }
 }

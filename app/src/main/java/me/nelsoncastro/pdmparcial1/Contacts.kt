@@ -9,8 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-@SuppressLint("ValidFragment", "StaticFieldLeak")
-object Contacts : Fragment() {
+class Contacts : Fragment() {
     var rv: RecyclerView? = null
     var contacts: ArrayList<Contact>? = null
     var adapter: ContactsAdapter? = null
@@ -46,10 +45,19 @@ object Contacts : Fragment() {
         rv!!.adapter = adapter
     }
 
-    fun  newInstance(contactss: ArrayList<Contact>)=
-            Contacts.apply {
-                arguments = Bundle().apply {
-                    putParcelableArrayList("KEY1",contactss)
-                }
-            }
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        @JvmStatic val fraggy = Contacts()
+        @JvmStatic val args = Bundle()
+
+        fun newInstance(contactsss: ArrayList<Contact>):Contacts{
+            args.putParcelableArrayList("KEY1",contactsss)
+            fraggy.arguments = args
+            return fraggy
+        }
+        fun getInstance(): Contacts{
+            return fraggy
+        }
+    }
+
 }

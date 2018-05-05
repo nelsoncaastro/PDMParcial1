@@ -9,13 +9,16 @@ import android.widget.ImageView
 import android.widget.TextView
 
 class SecondActivityAdapter(contact: Contact): RecyclerView.Adapter<SecondActivityAdapter.SingleViewHolder>() {
+
+    var contactInfo : ArrayList<Contact>? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SingleViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_second_contact_view,parent,false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_second_contact_single,parent,false)
         return SingleViewHolder(v)
     }
 
     override fun getItemCount(): Int {
-        return 1
+        return contactInfo!!.size
     }
 
     override fun onBindViewHolder(holder: SingleViewHolder, position: Int) {
@@ -24,7 +27,7 @@ class SecondActivityAdapter(contact: Contact): RecyclerView.Adapter<SecondActivi
 
 
     class SingleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        internal var card : CardView = itemView.findViewById(R.id.card_view)
+        internal var card : CardView = itemView.findViewById(R.id.card_view2)
         internal var name : TextView = itemView.findViewById(R.id.name)
         internal var img : ImageView = itemView.findViewById(R.id.img)
         internal var  butt : ImageView = itemView.findViewById(R.id.butt)

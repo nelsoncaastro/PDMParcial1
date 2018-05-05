@@ -23,45 +23,49 @@
                 android:layout_height="wrap_content"
                 app:queryHint="@string/app_name" />
         </android.support.v7.widget.Toolbar>
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabby"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed">
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab1" />
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab2" />
-        </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
-
-
         <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appy">
-            <android.support.v4.view.ViewPager
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/paggy"
+        android:layout_below="@id/appy"
+        android:orientation="horizontal">
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="match_parent"
-                android:background="@android:color/white">
+                android:orientation="vertical">
+                <android.support.design.widget.TabLayout
+                android:id="@+id/tabby"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="fixed">
 
-        </android.support.v4.view.ViewPager>
+                <android.support.design.widget.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tab1" />
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tab2" />
+            </android.support.design.widget.TabLayout>
+                <android.support.v4.view.ViewPager
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/paggy"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white">
+
+                </android.support.v4.view.ViewPager>
+            </LinearLayout>
             <fragment
-                android:id="@+id/fragment_main"
+                android:id="@+id/fragment_main_horizontal"
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="match_parent"/>
     </LinearLayout>
-        <RelativeLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
