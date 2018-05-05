@@ -26,8 +26,12 @@ class SecondActivity : AppCompatActivity() {
         val colly = findViewById<CollapsingToolbarLayout>(R.id.collapsingtoolbar)
         val imgToolbar = findViewById<ImageView>(R.id.imagy_single)
         //imgToolbar.setImageResource(R.drawable.earth)
+        setSupportActionBar(tooly)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
         colly.title = contact!!.surnom
-        tooly.title = contact!!.surnom
+        colly.setExpandedTitleTextAppearance(R.style.ExpandedAppBar)
+        colly.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar)
 
         val rv: RecyclerView = findViewById(R.id.recycly_contact_view)
         rv.layoutManager = LinearLayoutManager(this)
@@ -36,5 +40,7 @@ class SecondActivity : AppCompatActivity() {
         rv.adapter = adapter
 
     }
+
+
 
 }
