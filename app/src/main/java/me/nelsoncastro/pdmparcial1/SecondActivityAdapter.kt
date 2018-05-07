@@ -10,32 +10,50 @@ import android.widget.TextView
 
 class SecondActivityAdapter(private val contact: Contact): RecyclerView.Adapter<SecondActivityAdapter.SingleViewHolder>() {
 
-    var contactInfo : ArrayList<String>? = null
+    var contactInfo  = ArrayList<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SingleViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_second_contact_single,parent,false)
+        contactInfo= crearArrayList(contact)
         return SingleViewHolder(v)
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return 6
     }
 
     override fun onBindViewHolder(holder: SingleViewHolder, position: Int) {
         contactInfo= crearArrayList(contact)
 
+
         when(position){
+            6 -> {//holder.imgSrc.setImageResource(R.drawable.star_full)
+                //holder.imgSrc.maxWidth = 50
+                //holder.imgSrc.maxHeight = 50
+                //holder.text1.text = contactInfo!![position]
+                //holder.text2.text = "Prenom"
+            }
             0 -> {//holder.imgSrc.setImageResource(R.drawable.star_full)
-                holder.imgSrc.maxWidth = 50
-                holder.imgSrc.maxHeight = 50
                 holder.text1.text = contactInfo!![position]
-                holder.text2.text = "Surnom" }
-            1 -> {//holder.imgSrc.setImageResource(R.drawable.star_full)
+                holder.text2.text = "Prénom" }
+            1 -> {
                 holder.text1.text = contactInfo!![position]
-                holder.text2.text = "Numero Telephonique" }
-            2 -> {//holder.imgSrc.setImageResource(R.drawable.star_full)
+                holder.text2.text = "Numero de telephone" }
+            2 -> {
                 holder.text1.text = contactInfo!![position]
-                holder.text2.text = "Carte" }
+                holder.text2.text = "Numero aux maison" }
+            3 -> {
+                holder.text1.text = contactInfo!![position]
+                holder.text2.text = "Numero aux travaille" }
+            4 -> {
+                holder.imgSrc.setImageResource(R.drawable.star_full)
+                holder.text1.text = contactInfo!![position]
+                holder.text2.text = "Email" }
+            5 -> {
+                holder.imgSrc.setImageResource(R.drawable.star_full)
+                holder.text1.text = contactInfo!![position]
+                holder.text2.text = "Carte aux Universite"
+            }
 
 
         }
@@ -43,10 +61,14 @@ class SecondActivityAdapter(private val contact: Contact): RecyclerView.Adapter<
 
     fun crearArrayList(contact: Contact): ArrayList<String>{
         var auxi = ArrayList<String>().apply {
-            add(contact.prenom)
+            add("${contact.prenom} ${contact.nom}")
             add(contact.nombre.toString())
+            //if(contact.nombremaison!=0) add(contact.nombremaison.toString())
+            add(contact.nombremaison.toString())
+            //if(contact.nombretravaille!=0) add(contact.nombretravaille.toString())
             //add(contact.image.toString())
-            //add(contact.but!!)
+            add(contact.nombretravaille.toString())
+            add(contact.but!!)
             add(contact.carte.toString())
         }
 

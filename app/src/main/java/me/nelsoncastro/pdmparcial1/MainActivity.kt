@@ -37,15 +37,23 @@ class MainActivity : AppCompatActivity() {
         contacts.addAll(lazyContacts)
 
         contacts = if(savedInstanceState != null){
-            savedInstanceState.getParcelableArrayList("CLE")
+            //savedInstanceState.getParcelableArrayList("CLE")
+            ArrayList<Contact>().apply {
+                add(Contact("Nelson", "Castro", 77400000, 0, 0, R.drawable.earth, "00046516@uca.edu.sv", 43516, false))
+                add(Contact("Sam", "O'nella", 74190000, 0, 0, R.drawable.twd, "00046516@uca.edu.sv", 0, false))
+                add(Contact("Phil", "DeFranco", 71300000, 0, 0 , R.drawable.got, "00046516@uca.edu.sv", 0, false))
+                add(Contact("Adele", "Whoknows", 71300000, 0, 0, R.drawable.bbad, "00046516@uca.edu.sv", 0, false))
+                add(Contact("Jessi", "Marthel", 71300000, 25300000, 27270000, R.drawable.himym, "00046516@uca.edu.sv", 43516, false))
+                add(Contact("Nami", "No", 71300000, 0, 0, R.drawable.favs, "00046516@uca.edu.sv", 0, false))
+            }
         }else {
             ArrayList<Contact>().apply {
-                add(Contact("Nelson", "Castro", 77400000, 0, 0, R.drawable.earth, null, 43516, false))
-                add(Contact("Sam", "O'nella", 74190000, 0, 0, R.drawable.twd, null, 0, false))
-                add(Contact("Phil", "DeFranco", 71300000, 0, 0 , R.drawable.got, null, 0, false))
-                add(Contact("Adele", "Whoknows", 71300000, 0, 0, R.drawable.bbad, null, 0, false))
-                add(Contact("Jessi", "Marthel", 71300000, 0, 0, R.drawable.himym, null, 0, false))
-                add(Contact("Nami", "No", 71300000, 0, 0, R.drawable.favs, null, 0, false))
+                add(Contact("Nelson", "Castro", 77400000, 0, 0, R.drawable.earth, "00046516@uca.edu.sv", 43516, false))
+                add(Contact("Sam", "O'nella", 74190000, 0, 0, R.drawable.twd, "00046516@uca.edu.sv", 0, false))
+                add(Contact("Phil", "DeFranco", 71300000, 0, 0 , R.drawable.got, "00046516@uca.edu.sv", 0, false))
+                add(Contact("Adele", "Whoknows", 71300000, 0, 0, R.drawable.bbad, "00046516@uca.edu.sv", 0, false))
+                add(Contact("Jessi", "Marthel", 71300000, 25300000, 27270000, R.drawable.himym, "00046516@uca.edu.sv", 43516, false))
+                add(Contact("Nami", "No", 71300000, 0, 0, R.drawable.favs, "00046516@uca.edu.sv", 0, false))
             }
         }
 
