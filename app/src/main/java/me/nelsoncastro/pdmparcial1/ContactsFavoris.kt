@@ -46,9 +46,17 @@ class ContactsFavoris: Fragment() {
 
     fun prepareFavSeries(contacts:ArrayList<Contact>?): ArrayList<Contact> {
         val favcontacts = ArrayList<Contact>()
-        for (i in contacts!!.indices) if(contacts[i].isFavoris){
-            favcontacts.add(Contact(contacts[i].prenom,contacts[i].nom,contacts[i].nombre,contacts[i].image,contacts[i].but,contacts[i].carte,contacts[i].isFavoris))
-        }
+        for (i in contacts!!.indices) if(contacts[i].isFavoris) favcontacts.add(Contact(
+                contacts[i].prenom,
+                contacts[i].nom,
+                contacts[i].nombre,
+                contacts[i].nombremaison,
+                contacts[i].nombretravaille,
+                contacts[i].image,
+                contacts[i].but,
+                contacts[i].carte,
+                contacts[i].isFavoris
+        ))
         return favcontacts
     }
 

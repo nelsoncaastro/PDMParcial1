@@ -3,10 +3,12 @@ package me.nelsoncastro.pdmparcial1
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Contact(var prenom: String,var nom: String, var nombre: Int, var image: Int, var but: String?, var carte: Int, var isFavoris: Boolean) : Parcelable {
+data class Contact(var prenom: String,var nom: String, var nombre: Int, var nombremaison: Int, var nombretravaille: Int, var image: Int, var but: String?, var carte: Int, var isFavoris: Boolean) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
+            parcel.readInt(),
+            parcel.readInt(),
             parcel.readInt(),
             parcel.readInt(),
             parcel.readString(),
@@ -18,6 +20,8 @@ data class Contact(var prenom: String,var nom: String, var nombre: Int, var imag
         parcel.writeString(prenom)
         parcel.writeString(nom)
         parcel.writeInt(nombre)
+        parcel.writeInt(nombremaison)
+        parcel.writeInt(nombretravaille)
         parcel.writeInt(image)
         parcel.writeString(but)
         parcel.writeInt(carte)

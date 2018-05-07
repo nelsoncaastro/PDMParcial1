@@ -50,12 +50,14 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/recycly_contact_view"/>
+                android:id="@+id/recycly_contact_view"
+                android:layout_margin="5dp"/>
         </FrameLayout>
     </android.support.v4.widget.NestedScrollView>
 
