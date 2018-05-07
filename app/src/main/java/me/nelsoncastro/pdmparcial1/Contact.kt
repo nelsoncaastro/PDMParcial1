@@ -3,17 +3,20 @@ package me.nelsoncastro.pdmparcial1
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Contact(var surnom: String, var nombre: Int, var image: Int, var but: String?, var carte: Int, var isFavoris: Boolean): Parcelable {
+data class Contact(var prenom: String,var nom: String, var nombre: Int, var image: Int, var but: String?, var carte: Int, var isFavoris: Boolean) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
+            parcel.readString(),
             parcel.readInt(),
             parcel.readInt(),
             parcel.readString(),
             parcel.readInt(),
-            parcel.readByte() != 0.toByte()) {}
+            parcel.readByte() != 0.toByte()) {
+    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(surnom)
+        parcel.writeString(prenom)
+        parcel.writeString(nom)
         parcel.writeInt(nombre)
         parcel.writeInt(image)
         parcel.writeString(but)

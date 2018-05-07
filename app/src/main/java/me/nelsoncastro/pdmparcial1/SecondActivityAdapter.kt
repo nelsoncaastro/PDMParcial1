@@ -43,7 +43,7 @@ class SecondActivityAdapter(private val contact: Contact): RecyclerView.Adapter<
 
     fun crearArrayList(contact: Contact): ArrayList<String>{
         var auxi = ArrayList<String>().apply {
-            add(contact.surnom)
+            add(contact.prenom)
             add(contact.nombre.toString())
             //add(contact.image.toString())
             //add(contact.but!!)

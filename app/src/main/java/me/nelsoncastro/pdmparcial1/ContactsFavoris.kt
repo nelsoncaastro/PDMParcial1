@@ -18,6 +18,8 @@ class ContactsFavoris: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        contacts = ArrayList()
+        favcontacts = ArrayList()
         arguments?.let {
             contacts = it.getParcelableArrayList("KEY2")
         }
@@ -45,7 +47,7 @@ class ContactsFavoris: Fragment() {
     fun prepareFavSeries(contacts:ArrayList<Contact>?): ArrayList<Contact> {
         val favcontacts = ArrayList<Contact>()
         for (i in contacts!!.indices) if(contacts[i].isFavoris){
-            favcontacts.add(Contact(contacts[i].surnom,contacts[i].nombre,contacts[i].image,contacts[i].but,contacts[i].carte,contacts[i].isFavoris))
+            favcontacts.add(Contact(contacts[i].prenom,contacts[i].nom,contacts[i].nombre,contacts[i].image,contacts[i].but,contacts[i].carte,contacts[i].isFavoris))
         }
         return favcontacts
     }
@@ -54,6 +56,12 @@ class ContactsFavoris: Fragment() {
         favcontacts = prepareFavSeries(contactsss)
         adapter = ContactsAdapter(favcontacts!!,this.context!!,true)
         rv!!.adapter = adapter
+    }
+
+    fun getArray(): ArrayList<Contact>{
+        var auxi = ArrayList<Contact>()
+        auxi = favcontacts!!
+        return auxi
     }
 
     companion object {

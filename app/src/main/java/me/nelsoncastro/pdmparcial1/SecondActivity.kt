@@ -24,12 +24,12 @@ class SecondActivity : AppCompatActivity() {
 
         val tooly = findViewById<Toolbar>(R.id.toolbar)
         val colly = findViewById<CollapsingToolbarLayout>(R.id.collapsingtoolbar)
-        val imgToolbar = findViewById<ImageView>(R.id.imagy_single)
-        //imgToolbar.setImageResource(R.drawable.earth)
+        val imgToolbar = findViewById<ImageView>(R.id.app_bar_image)
+        imgToolbar.setImageResource(contact!!.image)
         setSupportActionBar(tooly)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
-        colly.title = contact!!.surnom
+        colly.title = contact!!.prenom
         colly.setExpandedTitleTextAppearance(R.style.ExpandedAppBar)
         colly.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar)
 

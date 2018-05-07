@@ -1,33 +1,45 @@
 package me.nelsoncastro.pdmparcial1
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.content.ContentResolver
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.provider.ContactsContract
 import android.support.design.widget.TabLayout
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
 import java.io.File
 import java.io.FileOutputStream
+import java.security.Permissions
 
 class MainActivity : AppCompatActivity() {
 
     var contacts : ArrayList<Contact> = ArrayList()
+    val MY_PERMISSIONS_REQUEST_READ_CONTACTS = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        contacts = ArrayList<Contact>().apply {
-        add(Contact("Nelson",77400000,R.drawable.earth,null,0,false))
-        add(Contact("Sam",74190000,R.drawable.twd,null,0,false))
-        add(Contact("Phil",71300000,R.drawable.got,null,0,false))
-        add(Contact("Adele",71300000,R.drawable.bbad,null,0,false))
-        add(Contact("Jessi",71300000,R.drawable.all,null,0,false))
-        add(Contact("Nami",71300000,R.drawable.favs,null,0,false))}
-
+        contacts = if(savedInstanceState != null){
+            savedInstanceState.getParcelableArrayList("CLE")
+        }else {
+            ArrayList<Contact>().apply {
+                add(Contact("Nelson", "Castro", 77400000, R.drawable.earth, null, 43516, false))
+                add(Contact("Sam", "O'nella", 74190000, R.drawable.twd, null, 0, false))
+                add(Contact("Phil", "DeFranco", 71300000, R.drawable.got, null, 0, false))
+                add(Contact("Adele", "Whoknows", 71300000, R.drawable.bbad, null, 0, false))
+                add(Contact("Jessi", "Marthel", 71300000, R.drawable.himym, null, 0, false))
+                add(Contact("Nami", "No", 71300000, R.drawable.favs, null, 0, false))
+            }
+        }
 
         val bungalo = Bundle()
         bungalo.putParcelableArrayList("KEY", contacts)
@@ -66,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                                 e.printStackTrace()
                             }
                             val imageSrc = FileTemp.path
-                            contacts.add(Contact(name,numerotelephone.toInt(),imageSrc.toInt(),null,0,false))
+                            contacts.add(Contact(name, "",numerotelephone.toInt(),imageSrc.toInt(),null,0,false))
                         }
                     }
                     pcurry.close()
@@ -77,4 +89,31 @@ class MainActivity : AppCompatActivity() {
         }
         curry.close()
     }
+
+    fun requestContacts() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this,Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_CONTACTS)){
+
+            } else {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CONTACTS),MY_PERMISSIONS_REQUEST_READ_CONTACTS)
+            }
+        } else{
+
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when (requestCode) {
+            MY_PERMISSIONS_REQUEST_READ_CONTACTS -> {
+                if ((grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED)){
+
+                } else {
+
+                }
+                return
+            }
+
+        }
+    }
+
 }

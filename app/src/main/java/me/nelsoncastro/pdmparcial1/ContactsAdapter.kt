@@ -24,7 +24,7 @@ class ContactsAdapter(private val contacts: ArrayList<Contact>, private val cont
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val sendBundle = Bundle()
 
-        holder.name.text = contacts[position].surnom
+        holder.name.text = contacts[position].prenom
         holder.img.setImageResource(contacts[position].image)
         holder.img.setOnClickListener { v ->
             sendBundle.putParcelable("KEEY",contacts[position])
@@ -35,7 +35,7 @@ class ContactsAdapter(private val contacts: ArrayList<Contact>, private val cont
         }
         holder.butt.setImageResource(if (contacts[position].isFavoris) R.drawable.star_full else R.drawable.star_empty)
         holder.butt.setOnClickListener {  v ->
-            Toast.makeText(v.context, contacts[position].surnom, Toast.LENGTH_SHORT).show()
+            Toast.makeText(v.context, contacts[position].prenom, Toast.LENGTH_SHORT).show()
             if(!favoris) {
                 if (!holder.fav) {
                     contacts[position].isFavoris = true

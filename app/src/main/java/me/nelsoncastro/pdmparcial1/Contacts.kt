@@ -17,6 +17,7 @@ class Contacts : Fragment() {
     var adapter: ContactsAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        contacts = ArrayList()
         super.onCreate(savedInstanceState)
         arguments?.let {
             contacts = it.getParcelableArrayList("KEY1")
@@ -39,7 +40,7 @@ class Contacts : Fragment() {
 
     fun update(contactsss: ArrayList<Contact>, position: Int, fav:Boolean){
         for (i in contacts!!.indices){
-            if (contacts!![i].surnom == contactsss[position].surnom){
+            if (contacts!![i].prenom == contactsss[position].prenom){
                 contacts!![i].isFavoris = fav
             }
         }
@@ -52,6 +53,10 @@ class Contacts : Fragment() {
         val dpWidth: Float = dislpayMetrics.widthPixels / dislpayMetrics.density
         val noOfColumns: Int = (dpWidth/180).toInt()
         return noOfColumns
+    }
+
+    fun getArray(): ArrayList<Contact>{
+        return contacts!!
     }
 
     companion object {
