@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Accueil</string>
+    <string name="tab2">FAVORIS</string>
+    <string name="tab1">TOUT</string>
+    <string name="query_hint_main">Rechercher</string>
+    <string name="title_home">Contacts</string>
+    <string name="title_view">Ajouter contact</string>
+    <string name="button_view">S\'Garder</string>
+    <string name="first_name_view">First Name</string>
+    <string name="last_name_view">Last Name</string>
+    <string name="phone_view">Numéro de téléphone</string>
+    <string name="home_view">Numéro de téléphone résidentiel</string>
+    <string name="work_view">Numéro de téléphone professionel</string>
+    <string name="email_view">E-mail</string>
+    <string name="id_view">Badge d\'identité</string>
+    <string name="intent_share_title">Partager à</string>
+    <string name="fullname_show">Prénom</string>
+    <string name="not_found">Inexistant</string>
+</resources>

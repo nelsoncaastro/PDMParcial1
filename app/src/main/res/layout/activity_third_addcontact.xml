@@ -22,14 +22,14 @@
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:background="@color/colorPrimaryDark"
-            app:title="Add contact">
+            app:title="@string/title_view">
 
             <Button
                 android:id="@+id/button"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SAVE"
+                android:text="@string/button_view"
                 tools:layout_editor_absoluteX="278dp"
                 tools:layout_editor_absoluteY="105dp" />
         </android.support.v7.widget.Toolbar>
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:inputType="textPersonName"
-            android:hint="First Name" />
+            android:hint="@string/first_name_view" />
 
         <EditText
             android:id="@+id/last_edit"
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:inputType="textPersonName"
-            android:hint="Last Name" />
+            android:hint="@string/last_name_view" />
     </LinearLayout>
 
 
@@ -96,7 +96,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:hint="Phone"
+        android:hint="@string/phone_view"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +130,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:hint="Home"
+        android:hint="@string/home_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_edit" />
@@ -144,7 +144,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:hint="Work"
+        android:hint="@string/work_view"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,7 +159,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:hint="Email"
+        android:hint="@string/email_view"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -175,7 +175,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:hint="School id"
+        android:hint="@string/id_view"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">Accueil</string>
-    <string name="tab2">FAVORIS</string>
-    <string name="tab1">TOUT</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab2">ALL</string>
+    <string name="tab1">FAVORITES</string>
+    <string name="query_hint_main">Search</string>
+    <string name="title_home">Contacts</string>
+    <string name="title_view">Add contact</string>
+    <string name="button_view">SAVE</string>
+    <string name="first_name_view">First name</string>
+    <string name="last_name_view">Last name</string>
+    <string name="phone_view">Phone</string>
+    <string name="home_view">Home phone</string>
+    <string name="work_view">Work phone</string>
+    <string name="email_view">Email</string>
+    <string name="id_view">Identity card</string>
+    <string name="intent_share_title">Share via</string>
+    <string name="fullname_show">Name</string>
+    <string name="not_found">Non-existent</string>
 </resources>

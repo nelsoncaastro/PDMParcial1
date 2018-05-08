@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Accueil</string>
+    <string name="tab2">FAVORITOS</string>
+    <string name="tab1">TODOS</string>
+    <string name="query_hint_main">Buscar</string>
+    <string name="title_home">Contactos</string>
+    <string name="title_view">Añadir contacto</string>
+    <string name="button_view">GUARDAR</string>
+    <string name="first_name_view">Nombre</string>
+    <string name="last_name_view">Apellido</string>
+    <string name="phone_view">Numero de celular</string>
+    <string name="home_view">Numero de casa</string>
+    <string name="work_view">Numero de trabajo</string>
+    <string name="email_view">Correo electronico</string>
+    <string name="id_view">Carnet</string>
+    <string name="intent_share_title">Compartir por</string>
+    <string name="fullname_show">Nombre completo</string>
+    <string name="not_found">Inexistente</string>
+</resources>

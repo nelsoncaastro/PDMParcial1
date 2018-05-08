@@ -47,16 +47,15 @@ class SecondActivity : AppCompatActivity() {
             val shareIntent = Intent()
             shareIntent.action = Intent.ACTION_SEND
             shareIntent.putExtra(Intent.EXTRA_TEXT,
-            """${contact!!.prenom}
-                |${contact!!.nom}
-                |Numéro de téléphone ${contact!!.nombre}
-                |Numéro de téléphone résidentiel ${contact!!.nombremaison}
-                |Numéro de téléphone professionel ${contact!!.nombretravaille}
-                |E-mail ${contact!!.but}
-                |Badge d'identité ${contact!!.carte}
+            """${contact!!.prenom} ${contact!!.nom}
+                |${this.getString(R.string.phone_view)} ${contact!!.nombre}
+                |${this.getString(R.string.home_view)} ${contact!!.nombremaison}
+                |${this.getString(R.string.work_view)} ${contact!!.nombretravaille}
+                |${this.getString(R.string.email_view)} ${contact!!.but}
+                |${this.getString(R.string.id_view)} ${contact!!.carte}
             """.trimMargin())
             shareIntent.type = "text/plain"
-            startActivity(Intent.createChooser(shareIntent, "Share via"))
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.intent_share_title)))
 
 
         }
