@@ -66,14 +66,12 @@ class ContactsFavoris: Fragment() {
 
     fun update(contactsss: ArrayList<Contact>){
         favcontacts = prepareFavSeries(contactsss)
-        adapter = ContactsAdapter(favcontacts!!,this.context!!,true)
+        adapter = ContactsAdapter(favcontacts,this.context!!,true)
         rv!!.adapter = adapter
     }
 
     fun getArray(): ArrayList<Contact>{
-        var auxi = ArrayList<Contact>()
-        auxi = favcontacts!!
-        return auxi
+        return favcontacts
     }
 
     companion object {

@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
             contacts.addAll(lazyContacts)
         } else{
-            
+            contacts = savedInstanceState.getParcelableArrayList("CLE")
         }
 
 
@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        //outState.putParcelableArrayList("CLE",contacts)
+        outState.putParcelableArrayList("CLE",s.getArray())
         Log.i("Main Activity", "Saving state")
         super.onSaveInstanceState(outState)
         //fragmentManager.putFragment(outState,"Contacts", s)
