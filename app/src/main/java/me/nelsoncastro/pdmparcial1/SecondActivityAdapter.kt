@@ -57,7 +57,7 @@ class SecondActivityAdapter(private val contact: Contact, private val contexte: 
                         }
                     }
                 } else holder.imgSrc.setImageResource(R.drawable.ic_local_phone_black_24dp)
-                holder.text1.text = if (contactInfo!![position] != "0") contactInfo!![position] else contexte.getString(R.string.not_found)
+                holder.text1.text = if (contactInfo!![position] != "0" || contactInfo[position] == null || contactInfo[position] == " ") contactInfo!![position] else contexte.getString(R.string.not_found)
                 holder.text2.text = contexte.getString(R.string.phone_view) }
             2 -> {
                 if (contactInfo[position] != "0") {
@@ -71,7 +71,7 @@ class SecondActivityAdapter(private val contact: Contact, private val contexte: 
                         }
                     }
                 } else holder.imgSrc.setImageResource(R.drawable.ic_local_phone_black_24dp)
-                holder.text1.text = if (contactInfo[position] != "0") contactInfo[position] else contexte.getString(R.string.not_found)
+                holder.text1.text = if (contactInfo[position] != "0" || contactInfo[position] == null || contactInfo[position] == " ") contactInfo[position] else contexte.getString(R.string.not_found)
                 holder.text2.text = contexte.getString(R.string.home_view) }
             3 -> {
                 if (contactInfo[position] != "0") {
@@ -85,15 +85,15 @@ class SecondActivityAdapter(private val contact: Contact, private val contexte: 
                         }
                     }
                 } else holder.imgSrc.setImageResource(R.drawable.ic_local_phone_black_24dp)
-                holder.text1.text = if (contactInfo[position] != "0") contactInfo[position] else contexte.getString(R.string.not_found)
+                holder.text1.text = if (contactInfo[position] != "0" || contactInfo[position] == null || contactInfo[position] == " ") contactInfo[position] else contexte.getString(R.string.not_found)
                 holder.text2.text = contexte.getString(R.string.work_view) }
             4 -> {
                 holder.imgSrc.setImageResource(R.drawable.ic_email_black_24dp)
-                holder.text1.text = contactInfo[position]
+                holder.text1.text = if (contactInfo[position] == " ") contactInfo[position] else contexte.getString(R.string.not_found)
                 holder.text2.text = contexte.getString(R.string.email_view) }
             5 -> {
                 holder.imgSrc.setImageResource(R.drawable.ic_perm_contact_calendar_black_24dp)
-                holder.text1.text = contactInfo[position]
+                holder.text1.text =  if (contactInfo[position] == " ") contactInfo[position] else contexte.getString(R.string.not_found)
                 holder.text2.text = contexte.getString(R.string.id_view)
             }
 

@@ -108,8 +108,19 @@ class MainActivity : AppCompatActivity() {
                     email = ecurry.getString(ecurry.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA))
                 }
                 ecurry.close()
-
-                lazyContacts.add(Contact(name, " ",telefonos[0],"0","0",R.drawable.defaulty,email,"00043516",false))
+                when(telefonos.size){
+                    0 -> {}
+                    1 -> {
+                        //if (email)
+                        lazyContacts.add(Contact(name, " ",telefonos[0],"0","0",R.drawable.defaulty,email,"00043516",false))
+                    }
+                    2 -> {
+                        lazyContacts.add(Contact(name, " ",telefonos[0],telefonos[1],"0",R.drawable.defaulty,email,"00043516",false))
+                    }
+                    3-> {
+                        lazyContacts.add(Contact(name, " ",telefonos[0],telefonos[1],telefonos[2],R.drawable.defaulty,email,"00043516",false))
+                    }
+                }
             }
             curry.close()
         }

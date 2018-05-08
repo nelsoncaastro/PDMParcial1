@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Accueil</string>
-    <string name="tab2">ALL</string>
-    <string name="tab1">FAVORITES</string>
+    <string name="tab2">FAVORITES</string>
+    <string name="tab1">ALL</string>
     <string name="query_hint_main">Search</string>
     <string name="title_home">Contacts</string>
     <string name="title_view">Add contact</string>
