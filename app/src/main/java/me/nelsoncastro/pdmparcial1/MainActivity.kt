@@ -32,11 +32,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val receiveBundle = this.intent.extras
 
         if(contacts.size == 0 && firsttime){
             requestContacts()
             firsttime = false
         }
+
+        Log.i("main", "Creating VIEW")
+
+
 
         if (savedInstanceState == null){
             contacts = ArrayList<Contact>().apply {
@@ -50,9 +55,10 @@ class MainActivity : AppCompatActivity() {
 
             contacts.addAll(lazyContacts)
         } else{
-            contacts = savedInstanceState.getParcelableArrayList("CLE")
+            contacts =  savedInstanceState.getParcelableArrayList("CLE")
         }
 
+        if (receiveBundle != null) contacts = receiveBundle.getParcelableArrayList("KEEEY")
 
         val bungalo = Bundle()
         bungalo.putParcelableArrayList("KEY", contacts)
@@ -66,8 +72,12 @@ class MainActivity : AppCompatActivity() {
 
         val butty = findViewById<FloatingActionButton>(R.id.floatty)
         butty.setOnClickListener { v ->
+            val sendBundle = Bundle()
+            sendBundle.putParcelableArrayList("KEEEEY",contacts)
             val intent = Intent(this.baseContext, AddContact::class.java)
+            intent.putExtras(sendBundle)
             startActivity(intent)
+            finish()
         }
     }
 
