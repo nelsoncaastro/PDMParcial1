@@ -62,7 +62,7 @@ class Contacts : Fragment() {
     fun calculateNoOfColumns(contexte: Context): Int{
         val dislpayMetrics: DisplayMetrics = contexte.resources.displayMetrics
         val dpWidth: Float = dislpayMetrics.widthPixels / dislpayMetrics.density
-        val noOfColumns: Int = (dpWidth/180).toInt()
+        val noOfColumns: Int = (dpWidth/140).toInt()
         return noOfColumns
     }
 
