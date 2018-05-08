@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 
@@ -12,8 +13,8 @@ class AddContact : AppCompatActivity(){
 
     var contact: Contact? = null
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_third_addcontact)
 
         val tooly = findViewById<Toolbar>(R.id.toolbarry)
@@ -33,12 +34,12 @@ class AddContact : AppCompatActivity(){
         contact = Contact(
                 first.text.toString(),
                 last.text.toString(),
-                phone.text.toString().toInt(),
-                home.text.toString().toInt(),
-                work.text.toString().toInt(),
+                phone.text.toString(),
+                home.text.toString(),
+                work.text.toString(),
                 R.drawable.himym,
                 email.text.toString(),
-                id.text.toString().toInt(),
+                id.text.toString(),
                 false
         )
 
@@ -48,6 +49,13 @@ class AddContact : AppCompatActivity(){
             val i = Intent(this, MainActivity::class.java)
             i.putExtras(sendBundle)
             startActivity(i)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when(item!!.itemId){
+            android.R.id.home -> {onBackPressed();true}
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

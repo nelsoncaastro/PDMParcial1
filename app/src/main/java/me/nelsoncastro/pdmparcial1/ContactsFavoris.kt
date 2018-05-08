@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,18 +13,17 @@ import kotlinx.android.synthetic.main.recyclerview2_main.*
 
 class ContactsFavoris: Fragment() {
     var contacts: ArrayList<Contact>? = null
-    var favcontacts: ArrayList<Contact>? = null
+    var favcontacts: ArrayList<Contact> = ArrayList()
     var rv: RecyclerView? = null
     var adapter: ContactsAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        contacts = ArrayList()
-        favcontacts = ArrayList()
+        contacts = if (savedInstanceState != null) savedInstanceState.getParcelableArrayList("KEEEEY") else ArrayList()
         arguments?.let {
             contacts = it.getParcelableArrayList("KEY2")
         }
-
+        favcontacts = prepareFavSeries(contacts)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,15 +33,19 @@ class ContactsFavoris: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        favcontacts = prepareFavSeries(contacts)
-
         rv = getView()!!.findViewById(R.id.recycly2)
         val lManager = GridLayoutManager(this.context, 3)
         rv!!.layoutManager = lManager
-        adapter = ContactsAdapter(favcontacts!!,this.context!!,true)
+        adapter = ContactsAdapter(favcontacts,this.context!!,true)
         rv!!.adapter = adapter
 
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.i("State status", "Fragment 2 onSaveInstance")
+        outState.putParcelableArrayList("KEEEEY",contacts)
     }
 
     fun prepareFavSeries(contacts:ArrayList<Contact>?): ArrayList<Contact> {

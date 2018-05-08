@@ -2,75 +2,72 @@ package me.nelsoncastro.pdmparcial1
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.os.Parcelable
 import android.provider.ContactsContract
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.TabLayout
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
-import java.io.File
-import java.io.FileOutputStream
-import java.security.Permissions
+import android.util.Log
+import android.support.v4.app.FragmentManager
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     var contacts : ArrayList<Contact> = ArrayList()
     val MY_PERMISSIONS_REQUEST_READ_CONTACTS = 100
-    val lazyContacts:ArrayList<Contact> by lazy {
-        requestContacts()
-        ArrayList<Contact>()
-    }
+    val lazyContacts = ArrayList<Contact>()
+
+    var firsttime = true
+
+    val fragmentManager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        contacts.addAll(lazyContacts)
 
-        contacts = if(savedInstanceState != null){
-            //savedInstanceState.getParcelableArrayList("CLE")
-            ArrayList<Contact>().apply {
-                add(Contact("Nelson", "Castro", 77400000, 0, 0, R.drawable.earth, "00046516@uca.edu.sv", 43516, false))
-                add(Contact("Sam", "O'nella", 74190000, 0, 0, R.drawable.twd, "00046516@uca.edu.sv", 0, false))
-                add(Contact("Phil", "DeFranco", 71300000, 0, 0 , R.drawable.got, "00046516@uca.edu.sv", 0, false))
-                add(Contact("Adele", "Whoknows", 71300000, 0, 0, R.drawable.bbad, "00046516@uca.edu.sv", 0, false))
-                add(Contact("Jessi", "Marthel", 71300000, 25300000, 27270000, R.drawable.himym, "00046516@uca.edu.sv", 43516, false))
-                add(Contact("Nami", "No", 71300000, 0, 0, R.drawable.favs, "00046516@uca.edu.sv", 0, false))
-            }
-        }else {
-            ArrayList<Contact>().apply {
-                add(Contact("Nelson", "Castro", 77400000, 0, 0, R.drawable.earth, "00046516@uca.edu.sv", 43516, false))
-                add(Contact("Sam", "O'nella", 74190000, 0, 0, R.drawable.twd, "00046516@uca.edu.sv", 0, false))
-                add(Contact("Phil", "DeFranco", 71300000, 0, 0 , R.drawable.got, "00046516@uca.edu.sv", 0, false))
-                add(Contact("Adele", "Whoknows", 71300000, 0, 0, R.drawable.bbad, "00046516@uca.edu.sv", 0, false))
-                add(Contact("Jessi", "Marthel", 71300000, 25300000, 27270000, R.drawable.himym, "00046516@uca.edu.sv", 43516, false))
-                add(Contact("Nami", "No", 71300000, 0, 0, R.drawable.favs, "00046516@uca.edu.sv", 0, false))
-            }
+        if(contacts.size == 0 && firsttime){
+            requestContacts()
+            firsttime = false
         }
+
+        if (savedInstanceState == null){
+            contacts = ArrayList<Contact>().apply {
+                add(Contact("Nelson", "Castro", "77400000", "0", "0", R.drawable.man, "00046516@uca.edu.sv", "00043516", false))
+                add(Contact("Sam", "O'nella", "77400000", "0", "0", R.drawable.man2, "00046516@uca.edu.sv", "0", false))
+                add(Contact("Phil", "DeFranco", "77400000", "0", "0" , R.drawable.man3, "00046516@uca.edu.sv", "0", false))
+                add(Contact("Adele", "Whoknows", "77400000", "0", "0", R.drawable.woman, "00046516@uca.edu.sv", "0", false))
+                add(Contact("Jessi", "Marthel", "77400000", "25300000", "27270000", R.drawable.himym, "00046516@uca.edu.sv", "00043516", false))
+                add(Contact("Nami", "No", "77400000", "0", "0", R.drawable.woman2, "00046516@uca.edu.sv", "0", false))
+            }
+
+            contacts.addAll(lazyContacts)
+        } else{
+            
+        }
+
 
         val bungalo = Bundle()
         bungalo.putParcelableArrayList("KEY", contacts)
 
         val tabbything = findViewById<TabLayout>(R.id.tabby)
         val viewy = findViewById<ViewPager>(R.id.paggy)
-        val adapter = ViewPagerAdapter(this, supportFragmentManager, bungalo)
+        val adapter = ViewPagerAdapter(this, fragmentManager, bungalo, savedInstanceState)
 
         viewy.adapter = adapter
         tabbything.setupWithViewPager(viewy)
 
         val butty = findViewById<FloatingActionButton>(R.id.floatty)
         butty.setOnClickListener { v ->
-            val i = Intent(this, AddContact::class.java)
-            startActivity(i)
+            val intent = Intent(this.baseContext, AddContact::class.java)
+            startActivity(intent)
         }
     }
 
@@ -102,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 ecurry.close()
 
-                lazyContacts.add(Contact(name, "",telefonos[0].toInt(),0,0,photouri.toInt(),email,0,false))
+                lazyContacts.add(Contact(name, " ",telefonos[0],"0","0",R.drawable.defaulty,email,"00043516",false))
             }
             curry.close()
         }
@@ -116,14 +113,14 @@ class MainActivity : AppCompatActivity() {
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CONTACTS),MY_PERMISSIONS_REQUEST_READ_CONTACTS)
             }
         } else{
-
+            getContacts()
         }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
             MY_PERMISSIONS_REQUEST_READ_CONTACTS -> {
-                if ((grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED)) getContacts()
+                if ((grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED)) requestContacts()
                 else {
 
                 }
@@ -136,9 +133,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        //outState!!.putParcelableArray("CLE",s.getArray().)
+    override fun onSaveInstanceState(outState: Bundle) {
+        //outState.putParcelableArrayList("CLE",contacts)
+        Log.i("Main Activity", "Saving state")
         super.onSaveInstanceState(outState)
+        //fragmentManager.putFragment(outState,"Contacts", s)
+        //fragmentManager.putFragment(outState, "ContactsFavoris", sf)
     }
 
     companion object {
